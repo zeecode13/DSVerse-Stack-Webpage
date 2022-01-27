@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">   
+  
+    <title>Stack-DSVerse</title>
+</head>
+<body>
+    <nav class="navigation max-width-1 m-auto">
+        <div class="nav-left">
+           
+                <span><img src="img/logo1.png" width="100px" ></span>
+            
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#author-info">About</a></li>
+                <li><a href="#static">Stack using array</a></li>
+                <li><a href="#dynamic">Stack using linked list</a></li>
+            </ul>
+        </div>
+       
+
+    </nav>
+    <div class="max-width-1 m-auto">
+        <hr>
+    </div>
+    
+    <div class="m-auto blog-post-content max-width-2 m-auto my-2">
+        <h1 class="font1" style="border:peachpuff; border-width:3px; border-style:solid;  background-color:white"> STACK IN DATA STRUCTURES </h1>
+        
+        <ul class="font1"style="font-size:18px"><br> <li>Stack is a non-primitive linear data structure where all insertions and deletions are permitted from one end only.
+            When we add elements to the stack it grows at one end and similarly when elements are deleted from stack, it shrinks at the same end.
+            </li> 
+            <li>Let us Consider an example of books stacked over one another on our teacher's desk.
+             In order to find a particular book we start checking by removing the first book placed at the top of the stack. Therefore, the book 
+            which has been placed at the bottommost position by the teacher remains in the stack for the longest period of time. We can say that the bottommost
+            book was the first one to be placed by the teacher and will be the last one to be removed.</li>
+            <li>This feature makes it LIFO data structure. LIFO stands for Last-in-first-out.Some real-life examples of stack data structure include stack of books, pile of dishes, stack of discs, deck of cards etc.</li>
+            
+        </ul>
+        <br>
+          <div  class="row">
+               <div class="column">
+                  
+                    <img src="img/Stack_of_books_generated.jpg" alt="stack of books" width="170" height="220"style="margin: 0px 0px 0px 10px;">
+                    <h4 style="margin-left:35px"class="font1">Stack of books</h4>
+               
+               </div>
+               <div class="column">
+                   <br>   <img src="img/colored_plates.jpg" alt="pile of dishes" width="120" height="144" style="margin: 0px 0px 0px 80px;" >
+                   <br><br><br><br>  <h4 style="margin-left:85px"class="font1">Pile of dishes  </h4>
+               </div>
+               <div class="column">
+                   <img src="img/stack of disks.jpg" alt="stack of discs" width="160" height="175" style="margin: 0px 0px 0px 80px;">
+                   <br><br><br> <h4 style="margin-left:125px"class="font1">Stack of discs</h4>
+               </div>
+            
+          </div>
+     
+         
+        <div class="font1"style="font-size:18px"> 
+            <br>
+            
+            <br>
+            <h3>Stack Operations </h3> 
+            <ul> 
+                <li><code style="background-color: peachpuff;border-radius:5px;color:darkslategray"> push()</code> – Adding new element onto stack. </li>
+                <li><code style="background-color: peachpuff;border-radius:5px;color:darkslategray"> pop()</code> – Removing top element from stack.</li>
+                <li><code style="background-color: peachpuff;border-radius:5px;color:darkslategray"> top()</code> – To get the top most element of the stack.</li>
+                <li><code style="background-color: peachpuff;border-radius:5px;color:darkslategray"> empty()</code> – To check if the stack is empty or not.</li>
+                <li><code style="background-color: peachpuff;border-radius:5px;color:darkslategray"> full()</code> – To determine if the stack is full or not.</li>
+            </ul>
+            
+            <br>
+             <img src="img/op.jpg" alt="operations on stack" width="420px" height="230" style="margin: 0px 0px 0px 60px;">
+             <br>
+            
+            
+            <h3>Stack Implementation </h3> 
+         Stack can be implemented in two ways :<br>
+        <ol>
+            <li id="static"><b>Static implementation</b><br><ul><li>Static implementation uses arrays for creating stack. It 
+                is considered as a very simple technique. A one-dimensional array can be used to hold all the elements of a stack.A variable "top" is used
+                to keep track of the index of the top most element present in the stack.Initially, top is set to -1 as the stack is empty.
+                After "push" operation top is updated to top+1 this indicates growing of stack. After "pop" operation top is decremented by 1 this indicates 
+                the shrinking of stack.When the value of top becomes Size-1 after a series of insertions or push operations, it is said to be full .Now no elements can be pushed onto
+                stack. Similarly, before popping an element from the stack we first check if the stack still contains elements and is not empty.</li></ul>
+            
+                </li>
+             <img src="img/static.jpg" alt="static representation" width="420px" height="180px" style="margin: 0px 0px 0px 80px;">
+              <br><h3>Program for implementing stack using an array in C++</h3>
+    <pre class='brush: cpp'style="border:peachpuff; border-width:3px; border-style:solid; font-size:15px; width:530px;color:darkslategray"><br>         
+             
+   #include < iostream >
+   using namespace std;
+
+   #define SIZE 5
+   int S[SIZE];
+   int top = -1;
+   void push(int value)
+   {
+     if(top==SIZE-1)
+     {    cout<<"Stack is full!\n";
+     }
+      else
+     {
+       top++;
+       S[top]=value;
+     }
+   }
+   bool empty()
+   {
+     if(top==-1)
+     return true;
+     else
+     return false;
+   }
+   void pop()
+  {
+    if(empty())
+     cout<<"Stack is empty!\n";
+    else
+     cout<<"Element popped from the stack:"<< S[top];
+     top--;
+   }
+
+   void stack_top()
+   {
+    if(empty())
+     cout<<"Stack is empty!\n";
+    else
+     cout<<"Element at top is: "<<  S[top]<<"\n";
+
+   }
+
+   void displayStack()
+   {
+     if(empty())
+    { 
+       cout<<"Stack is empty!\n";
+    }
+    else
+    {
+     for(int i=0 ; i<=top; i++)
+       cout<<  S[i]<<" ";
+      cout<<"\n";
+
+     }
+   }
+   int main()
+   {
+   char ch, flag=1;int value;
+   while( flag == 1)
+   {
+    cout<<"\na)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT";
+    cout<<"\n----------------------------------------------";
+    cout<<"\nYour choice:" ;
+    cin>>ch; 
+     switch (ch) {
+     case 'a': cout<<"Enter Value:";
+          cin>>value;
+          push(value);
+          break;
+     case 'b':pop();
+          break;
+     case 'c': stack_top();
+          break;
+     case 'd':displayStack();
+          break;
+     case 'e': flag = 0;
+          cout<<"-Exit-";
+          break;
+     default:cout<<"Invalid choice";
+     }
+    }
+     return 0;
+   }   
+
+     </pre>
+            <br>
+            <h3>Output:</h3>
+  <pre  style="background-color:peachpuff; border-radius: 25px; width:530px;color:darkslategray;font-size:15px">
+
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:a
+   Enter Value:14
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+    Your choice:a
+   Enter Value:21
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:b
+   Element popped from the stack:21
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:a
+   Enter Value:48
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:d
+   14 48
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:c
+   Element at top is: 48
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:e
+   -Exit-
+
+</pre>
+            <br><b> Drawbacks of using array for implementation of stack: </b>
+            <br>-We cannot increase the size of the array if we have more elements to insert as array stores only a fixed number of data values which is predefined at the time of declaration by specifying size.
+            <br>-Considering the above point if we create a very large array, a lot of memory space will be wasted.
+            <br>
+            <br>
+                
+            <li id="dynamic"><b>Dynamic implementation</b><br>  <ul><li>Dynamic implementation is also called linked list representation. Pointers are used for dynamic implementation of stack.
+            It is said to be an efficient way of representing stack as in this technique we can dynamically increase the size of the stack
+            as per the requirement. In this kind of representation we use a singly connected linked list where the head pointer/top pointer keeps track of the top most element in the stack.
+            </li><li>The push operation involves inserting a new node to the linked list. Initially when the Stack (Linked List) is empty, the top pointer will be NULL. 
+            After a node is pushed onto the stack the top will now point to this newly created node. The pop operation is similar to deletion of a node from the starting of a linked list.
+            We will first equate a temporary pointer to the top pointer then the top is made to point at the node which was initially inserted before the top most node. Finally, we will delete the node 
+            which the temporary pointer is pointing at.</li><li>Remember that deletion and insertion in stack takes place in the last in first out(LIFO) format so
+            the newly inserted element will be the first one to be popped off the stack. Again, before popping an element/node we have to check if the stack is empty or 
+            not i.e. if top == NULL, it means that the stack is empty and therefore pop operation cannot be carried out.</li></ul>
+            </li>   <img src="img/dynamic.jpg" alt="dynamic representation" width="250px" height="280px" style="margin: 0px 0px 0px 150px;">
+                 
+                 <br><h3>Program for implementing stack using linked list in C++</h3>
+            
+            <pre class='brush: cpp'style="border:peachpuff; border-width:3px; border-style:solid; font-size:15px; width:530px;color:darkslategray"><br>
+   #include < iostream >
+   using namespace std;
+
+   //Structure of the Node
+  struct Node
+  {
+  int data;
+
+  Node *link;
+   };
+
+   //top pointer to keep track of the top of the stack
+   Node *top = NULL;
+
+   //Function to determine if stack is empty or not
+   bool isempty()
+   {
+    if(top == NULL)
+    return true; else
+    return false;
+   }
+
+   //Function to insert an element in stack
+   void push (int value)
+   {
+     Node *ptr = new Node();
+     ptr->data = value;
+     ptr->link = top;
+     top = ptr;
+   }
+
+   //Function to pop an element from the stack
+   void pop ( )
+  {
+    if ( isempty() )
+    cout<<"Stack is Empty";
+    else
+    {
+     Node *ptr = top;
+     cout<<"Element popped from the stack:"<<ptr->data;
+     top = top -> link;
+     delete(ptr);
+    }
+   }
+   //Function to display element at the top of the stack
+   void stack_top()
+   {
+    if ( isempty() )
+     cout<<"Stack is Empty";
+    else
+     cout<<"Element at top is : "<< top->data;
+   }
+   // Function to Display the stack
+   void displayStack()
+   {
+    if ( isempty() )
+     cout<<"Stack is Empty";
+    else
+    {
+     Node *temp=top;
+     while(temp!=NULL)
+     {   cout<<temp->data<<" ";
+      temp=temp->link;
+    }
+     cout<<"\n";
+    }
+    }
+   int main()
+   {
+    char ch, flag=1; 
+    int value;
+    while( flag == 1)
+    {
+    cout<<"\na)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT";
+    cout<<"\n----------------------------------------------";
+    cout<<"\nYour choice:";
+    cin>>ch; 
+    switch (ch) {
+    case 'a': cout<<"Enter Value:";
+         cin>>value;
+         push(value);
+         break;
+    case 'b':pop();
+         break;
+    case 'c': stack_top();
+         break;
+    case 'd':displayStack();
+         break;
+    case 'e': flag = 0;
+         cout<<"-Exit-";
+         break;
+    default:cout<<"Invalid choice";
+    }
+    }
+     return 0;
+   }
+
+     </pre>
+            <br>
+            <h3>Output:</h3>
+            <pre class='brush: cpp' style="background-color:peachpuff; border-radius: 25px; width:530px;color:darkslategray;font-size:15px "><br>
+
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+    ----------------------------------------------
+   Your choice:a
+   Enter Value:22
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:a
+   Enter Value:13
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:b
+   Element popped from the stack:13
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:c
+   Element at top is : 22
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:a
+   Enter Value:32
+   )PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:d
+   32 22 
+   a)PUSH b)POP c)SHOW TOP d)DISPLAY STACK e)EXIT
+   ----------------------------------------------
+   Your choice:e
+   -Exit-
+
+</pre>
+                
+        </ol>
+        
+            
+         
+         
+         <br>
+         <h3>Applications Of Stack </h3> 
+         <ul>
+             <li>Stack is used in expression conversion-
+             <ul style="margin-left: 160px;"><li>Infix to postfix</li> 
+                         <li>Infix to prefix</li>
+                         <li>Prefix to Infix</li>
+                         <li>Postfix to Infix</li>
+             </ul>
+                     
+            </li>
+             
+             <li>Evaluation of expression</li>
+             <li>Simulation of Recursion</li>
+             <li>Function call</li>
+             <li>Compilers use a stack for parsing the syntax of expressions, program blocks etc.</li>
+             <li>Stack is used to implement Tower of Hanoi</li>
+         </ul>
+         
+        </div>      
+          <br>
+       <div class="max-width-1 m-auto">
+        <hr>
+       </div>      
+        
+      <div>      
+        
+        <div class="blogpost-meta">
+            <div class="author-info" id="author-info">
+                <div>
+                    <b><br>
+                  Article Contributed By :
+                </b>
+                </div>
+                <div>Zahra Dehghan
+                    <p style="font-size: 15px">CSE Undergraduate @Trinity College Of Engineering And Research, Pune
+                    <br>Programming languages familiar with: C++, Python, Java
+                    <br>Area of Interest: Web/App Development, Machine Learning</p>
+                    
+                    
+                </div>
+                
+                
+                
+                
+            </div>
+              <div class="social">
+                <a href="https://www.linkedin.com/in/zahra-dehghan-8ab05b193"> <svg style="background: blue;
+                border-radius: 21px;" width="29" height="29" viewBox="0 0 29 29" fill="none" class="hk"><path d="M5 6.36C5 5.61 5.63 5 6.4 5h16.2c.77 0 1.4.61 1.4 1.36v16.28c0 .75-.63 1.36-1.4 1.36H6.4c-.77 0-1.4-.6-1.4-1.36V6.36z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M10.76 20.9v-8.57H7.89v8.58h2.87zm-1.44-9.75c1 0 1.63-.65 1.63-1.48-.02-.84-.62-1.48-1.6-1.48-.99 0-1.63.64-1.63 1.48 0 .83.62 1.48 1.59 1.48h.01zM12.35 20.9h2.87v-4.79c0-.25.02-.5.1-.7.2-.5.67-1.04 1.46-1.04 1.04 0 1.46.8 1.46 1.95v4.59h2.87v-4.92c0-2.64-1.42-3.87-3.3-3.87-1.55 0-2.23.86-2.61 1.45h.02v-1.24h-2.87c.04.8 0 8.58 0 8.58z" fill="#fff"></path></svg>
+                </a> 
+
+              </div>
+        </div>
+    
+      </div>    
+  </div>
+    <div class="footer">
+        <p>| Copyright &copy; DSVerse. All Rights Reserved |</p>
+         <a href="https://www.vecteezy.com/free-vector/typewriter">Vector Credits: Vecteezy</a> 
+    </div>
+</body>
+</html>
